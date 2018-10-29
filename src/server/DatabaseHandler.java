@@ -3,11 +3,12 @@ package server;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseHandler implements interfaces.DatabaseHandler {
     private Connection _connection = null;
 
-    public void connect(String path) {
+    void connect(String path) {
         try {
             var url = "jdbc:sqlite:" + path;
             _connection = DriverManager.getConnection(url);
@@ -18,11 +19,14 @@ public class DatabaseHandler implements interfaces.DatabaseHandler {
         }
     }
 
-    public void disconnect(){
-        try{
-            if (_connection != null)
+    void disconnect() {
+        try {
+            if (_connection != null) {
                 _connection.close();
-        } catch (SQLException ex){
+
+                System.out.println("The database has been disconnected!");
+            }
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -30,6 +34,13 @@ public class DatabaseHandler implements interfaces.DatabaseHandler {
 
     @Override
     public String getAnswer(PollingStage stage, String query) {
+        var sql = "SELECT Id, Class FROM Classification";
+        try (var statement = _connection.createStatement();
+             var result = statement.executeQuery(sql)){
+            //TODO this
+        } catch (SQLException ex){
+
+        }
         return null;
     }
 

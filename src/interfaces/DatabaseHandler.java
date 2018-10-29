@@ -1,6 +1,8 @@
 package interfaces;
 
+import server.PollingStage;
+
 public interface DatabaseHandler {
-    String getAnswer(int level, String query);
-    String getClarifyingQuestion(int level);
+    String getAnswer(PollingStage stage, String query);
+    String getClarifyingQuestion(PollingStage stage);
 }
