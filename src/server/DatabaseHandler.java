@@ -3,9 +3,8 @@ package server;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class DatabaseHandler implements interfaces.DatabaseHandler {
+public class DatabaseHandler {
     private Connection _connection = null;
 
     void connect(String path) {
@@ -32,20 +31,18 @@ public class DatabaseHandler implements interfaces.DatabaseHandler {
 
     }
 
-    @Override
-    public String getAnswer(PollingStage stage, String query) {
-        var sql = "SELECT Id, Class FROM Classification";
+    public String getAnswer(String query) {
+        var sql = "SELECT Id, Descriptions FROM Classification";
         try (var statement = _connection.createStatement();
-             var result = statement.executeQuery(sql)){
-            //TODO this
-        } catch (SQLException ex){
+             var result = statement.executeQuery(sql)) {
+
+            while (result.next()) {
+                System.out.println(result.getInt("Id") + " " + result.getString("Descriptions"));
+            }
+
+        } catch (SQLException ex) {
 
         }
-        return null;
-    }
-
-    @Override
-    public String getClarifyingQuestion(PollingStage stage) {
         return null;
     }
 }

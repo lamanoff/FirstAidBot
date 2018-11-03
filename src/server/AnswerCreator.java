@@ -1,15 +1,14 @@
 package server;
 
-import com.google.gson.Gson;
-import interfaces.*;
+public class AnswerCreator {
+    DatabaseHandler _dbHandler;
 
-public class AnswerCreator implements interfaces.AnswerCreator {
-    public AnswerCreator(APIHandler apiHandler, Parser parser, DatabaseHandler db){
-
+    public AnswerCreator(DatabaseHandler dbHandler){
+        _dbHandler = dbHandler;
     }
 
-    @Override
-    public Gson GetAnswer(Gson jsonRequest) {
-        return null;
+    public String GetAnswer(String request) {
+        var keyWords = request.split(" ");
+        return "";
     }
 }
