@@ -1,14 +1,13 @@
 package server;
 
 public class AnswerCreator {
-    DatabaseHandler _dbHandler;
+    private DatabaseHandler _dbHandler;
 
     public AnswerCreator(DatabaseHandler dbHandler){
         _dbHandler = dbHandler;
     }
 
-    public String GetAnswer(String request) {
-        var keyWords = request.split(" ");
-        return "";
+    public String getAnswer(String request) {
+        return _dbHandler.getAnswer(request);
     }
 }
