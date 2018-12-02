@@ -14,7 +14,10 @@ public class Main {
         while (true) {
             var request = _apiHandler.receive();
             var answer = _dbHandler.getAnswer(request);
-            _apiHandler.reply(answer);
+            if (answer == null)
+                _apiHandler.reply("Пожалуйста, сформулируйте свою проблему более конкретно");
+            else
+                _apiHandler.reply(answer);
         }
         //((DatabaseHandler) _dbHandler).disconnect();
     }

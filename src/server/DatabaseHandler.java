@@ -52,6 +52,17 @@ public class DatabaseHandler {
         return false;
     }
 
+    private String extractAnswer(int id) {
+        var sql = "SELECT Id, Answer FROM Classification WHERE Id = " + id;
+        try (var statement = _connection.createStatement();
+             var response = statement.executeQuery(sql)) {
+            if (response == null)
+                return null;
+            return response.getString("Answer");
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
 
     public String getAnswer(String query) {
         var sql = "SELECT Id, Descriptions FROM Classification";
@@ -64,14 +75,11 @@ public class DatabaseHandler {
                 var descriptions = response.getString("Descriptions");
                 var answerKeywords = descriptions.split(";");
                 for (var queryWord : queryWords) {
-                    if (haveRequiredWord(answerKeywords, queryWord, 2)) {
+                    if (haveRequiredWord(answerKeywords, queryWord, 1)) {
                         var id = response.getInt("id");
-                        return makeQuery("SELECT Id, Answer FROM Classification WHERE Id = " + id).getString("Answer");
+                        return extractAnswer(id);
                     }
                 }
-
-                //Arrays.asList(1,2,3,4,5).stream().filter( i -> i%2 == 0).mapToInt(i -> i).sum();
-                //System.out.println(result.getInt("Id") + " " + result.getString("Descriptions"));
             }
         } catch (SQLException ex) {
             return null;
