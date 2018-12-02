@@ -11,6 +11,7 @@ public class Main {
         _dbHandler.connect("db\\db.db");
         _answerCreator = new AnswerCreator(_dbHandler);
 
+        _apiHandler.reply("Вас приветствует бот первой помощи! Что у Вас случилось?");
         while (true) {
             var request = _apiHandler.receive();
             var answer = _dbHandler.getAnswer(request);
