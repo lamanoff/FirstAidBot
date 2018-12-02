@@ -75,7 +75,7 @@ public class DatabaseHandler {
                 var descriptions = response.getString("Descriptions");
                 var answerKeywords = descriptions.split(";");
                 for (var queryWord : queryWords) {
-                    if (haveRequiredWord(answerKeywords, queryWord, 1)) {
+                    if (haveRequiredWord(answerKeywords, queryWord.toLowerCase(), 0)) {
                         var id = response.getInt("id");
                         return extractAnswer(id);
                     }
