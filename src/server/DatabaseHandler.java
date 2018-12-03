@@ -4,14 +4,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 public class DatabaseHandler {
     private Connection _connection = null;
 
-    void connect(String path) {
+    public void connect(String path) {
         try {
             var url = "jdbc:sqlite:" + path;
             _connection = DriverManager.getConnection(url);
@@ -22,7 +20,7 @@ public class DatabaseHandler {
         }
     }
 
-    void disconnect() {
+    public void disconnect() {
         try {
             if (_connection != null) {
                 _connection.close();
@@ -31,15 +29,6 @@ public class DatabaseHandler {
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
-    }
-
-    private ResultSet makeQuery(String sql) {
-        try (var statement = _connection.createStatement();
-             var result = statement.executeQuery(sql)) {
-            return result;
-        } catch (SQLException ex) {
-            return null;
         }
     }
 
