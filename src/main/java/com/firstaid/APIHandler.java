@@ -7,7 +7,7 @@ public class APIHandler {
     public APIHandler(AnswerCreator answerCreator, String access_token) {
         org.apache.log4j.BasicConfigurator.configure();
         var group = new Group(-175100810, access_token);
-        var defaultAnswer = "Пожалуйста, сформулируйте проблему более конкретно.";
+        var defaultAnswer = "Я тебя не понял(";
 
         group.onSimpleTextMessage(message ->
                 new Message()
