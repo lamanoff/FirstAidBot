@@ -9,35 +9,24 @@ public class APIHandler {
         var group = new Group(-175100810, access_token);
         var defaultAnswer = "Я тебя не понял(";
 
-        group.onSimpleTextMessage(message ->
-                new Message()
-                        .from(group)
-                        .to(message.authorId())
-                        .text(answerCreator.getAnswer(message.getText()))
-                        .send());
-        group.onStickerMessage(message ->
-                new Message()
-                        .from(group)
-                        .to(message.authorId())
-                        .text(defaultAnswer)
-                        .send());
-        group.onVoiceMessage(message ->
-                new Message()
-                        .from(group)
-                        .to(message.authorId())
-                        .text(defaultAnswer)
-                        .send());
-        group.onAudioMessage(message ->
-                new Message()
-                        .from(group)
-                        .to(message.authorId())
-                        .text(defaultAnswer)
-                        .send());
-        group.onPhotoMessage(message ->
-                new Message()
-                        .from(group)
-                        .to(message.authorId())
-                        .text(defaultAnswer)
-                        .send());
+        group.onSimpleTextMessage(message -> sendMessage(message, answerCreator.getAnswer(message.getText()), group));
+        group.onStickerMessage(message -> sendMessage(message, defaultAnswer, group));
+        group.onVoiceMessage(message -> sendMessage(message, defaultAnswer, group));
+        group.onAudioMessage(message -> sendMessage(message, defaultAnswer, group));
+        group.onPhotoMessage(message -> sendMessage(message, defaultAnswer, group));
+    }
+
+    private void sendMessage(Message received, String answer, Group group)
+    {
+        try {
+            new Message()
+                    .from(group)
+                    .to(received.authorId())
+                    .text(answer)
+                    .send();
+        } catch (Exception ex)
+        {
+            System.out.println("VK Handler exception: " + ex.getMessage());
+        }
     }
 }
