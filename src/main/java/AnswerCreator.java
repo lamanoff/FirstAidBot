@@ -8,7 +8,7 @@ public class AnswerCreator {
     public String getAnswer(String request) {
         var answer = _dbHandler.getAnswer(request);
         if (answer == null)
-            return "Пожалуйста, сформулируйте свою проблему более конкретно";
+            return "Пожалуйста, сформулируйте свою проблему более конкретно.";
         return answer;
     }
 }

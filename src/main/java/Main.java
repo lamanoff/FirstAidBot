@@ -5,9 +5,8 @@ public class Main {
         var dbHandler = new DatabaseHandler();
         dbHandler.connect(dbPath);
         var answerCreator = new AnswerCreator(dbHandler);
-        var apiHandler = new APIHandler(
-                answerCreator,
-                "");
+        var access_token = System.getenv().get("ACCESS_TOKEN");
+        var apiHandler = new APIHandler(answerCreator, access_token);
 
         //((DatabaseHandler) _dbHandler).disconnect();
     }
