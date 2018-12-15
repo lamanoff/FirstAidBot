@@ -16,11 +16,15 @@ public class AnswerCreator {
         try {
             var request = new AIRequest(question);
             var response = dataService.request(request);
-            if (response.getStatus().getCode() == 200)
-                return response.getResult().getFulfillment().getSpeech();
+            if (response.getStatus().getCode() == 200) {
+                var answer = response.getResult().getFulfillment().getSpeech();
+                if (answer.length() == 0)
+                    return "Я Вас не понял(";
+                return answer;
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return "Пожалуйста, сформулируйте свою проблему более конкретно.";
+        return "Не понятно(";
     }
 }
