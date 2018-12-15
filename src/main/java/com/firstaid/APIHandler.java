@@ -1,3 +1,5 @@
+package com.firstaid;
+
 import com.petersamokhin.bots.sdk.clients.Group;
 import com.petersamokhin.bots.sdk.objects.Message;
 

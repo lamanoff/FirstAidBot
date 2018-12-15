@@ -1,3 +1,5 @@
+package com.firstaid;
+
 public class Main {
 
     public static void main(String args[]) {
@@ -8,6 +10,6 @@ public class Main {
         var access_token = System.getenv().get("ACCESS_TOKEN");
         var apiHandler = new APIHandler(answerCreator, access_token);
 
-        //((DatabaseHandler) _dbHandler).disconnect();
+        //((com.firstaid.DatabaseHandler) _dbHandler).disconnect();
     }
 }

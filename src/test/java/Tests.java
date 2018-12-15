@@ -1,3 +1,6 @@
+import com.firstaid.AnswerCreator;
+import com.firstaid.DatabaseHandler;
+import com.firstaid.Main;
 import junit.framework.TestCase;
 import org.junit.Assert;
 

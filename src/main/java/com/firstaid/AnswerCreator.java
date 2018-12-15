@@ -1,3 +1,5 @@
+package com.firstaid;
+
 public class AnswerCreator {
     private DatabaseHandler _dbHandler;
 
