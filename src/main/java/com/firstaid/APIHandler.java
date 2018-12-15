@@ -13,7 +13,7 @@ public class APIHandler {
                 new Message()
                         .from(group)
                         .to(message.authorId())
-                        .text(answerCreator.getAnswer(message.getText()))
+                        .text(answerCreator.getAnswer(message.getText()) + message.getText())
                         .send());
         group.onStickerMessage(message ->
                 new Message()
