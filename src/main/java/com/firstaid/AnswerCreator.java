@@ -8,7 +8,7 @@ public class AnswerCreator {
     private AIDataService dataService;
 
     public AnswerCreator(String token) {
-        AIConfiguration configuration = new AIConfiguration(token);
+        var configuration = new AIConfiguration(token);
         dataService = new AIDataService(configuration);
     }
 
